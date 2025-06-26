@@ -22,7 +22,10 @@ i18n.use(initReactI18next).init({
   lng: savedLanguage,
   fallbackLng: "th",
   interpolation: { escapeValue: false },
-  debug: process.env.NODE_ENV === "development", // Enable debug in development
+  debug:
+    (typeof process !== "undefined" &&
+      process.env?.NODE_ENV === "development") ||
+    false, // Enable debug in development
 });
 
 // Save language changes to localStorage
