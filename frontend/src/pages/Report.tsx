@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useFetch } from "../hooks/useFetch";
+import { apiUrl } from "../config/api";
 
 export default function Report() {
   const { t } = useTranslation();
@@ -44,7 +45,7 @@ export default function Report() {
     e.preventDefault();
     setSubmitting(true);
     setSuccess(false);
-    await fetch("/api/report", {
+    await fetch(apiUrl("/api/report"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiUrl } from "../config/api";
 
 export function useFetch<T = unknown>(url: string) {
   const [data, setData] = useState<T | null>(null);
@@ -7,7 +8,9 @@ export function useFetch<T = unknown>(url: string) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(url)
+    const fullUrl = url.startsWith("http") ? url : apiUrl(url);
+
+    fetch(fullUrl)
       .then((res) => {
         if (!res.ok) throw new Error("Network error");
         return res.json();

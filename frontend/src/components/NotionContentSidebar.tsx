@@ -23,6 +23,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ExternalLinkIcon, ViewIcon } from "@chakra-ui/icons";
+import { apiUrl } from "../config/api";
 
 interface NotionPage {
   id: string;
@@ -80,7 +81,7 @@ const NotionContentSidebar: React.FC<NotionContentSidebarProps> = ({
     setError(null);
 
     try {
-      const response = await fetch("/api/notion-content", {
+      const response = await fetch(apiUrl("/api/notion-content"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

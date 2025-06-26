@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { FaFilePdf, FaVideo, FaBook } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { apiUrl } from "../../config/api";
 
 interface MediaItem {
   id: number;
@@ -31,7 +32,7 @@ export default function MediaLibraryPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/info/media-library")
+    fetch(apiUrl("/api/info/media-library"))
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {

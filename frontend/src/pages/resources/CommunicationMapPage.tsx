@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { apiUrl } from "../../config/api";
 
 interface Center {
   id: number;
@@ -17,7 +18,7 @@ export default function CommunicationMapPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/info/centers")
+    fetch(apiUrl("/api/info/centers"))
       .then((res) => res.json())
       .then((data) => {
         setCenters(data);

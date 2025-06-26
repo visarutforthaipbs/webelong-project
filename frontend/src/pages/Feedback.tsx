@@ -9,6 +9,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { apiUrl } from "../config/api";
 
 export default function Feedback() {
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ export default function Feedback() {
     e.preventDefault();
     setSubmitting(true);
     setSuccess(false);
-    await fetch("/api/feedback", {
+    await fetch(apiUrl("/api/feedback"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ feedback }),

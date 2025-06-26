@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useFetch } from "../hooks/useFetch";
+import { apiUrl } from "../config/api";
 
 interface CalculatorResult {
   legalMonthly: number;
@@ -52,7 +53,7 @@ export default function Calculator() {
     e.preventDefault();
     setSubmitting(true);
     setResult(null);
-    const res = await fetch("/api/calculate-wage", {
+    const res = await fetch(apiUrl("/api/calculate-wage"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
