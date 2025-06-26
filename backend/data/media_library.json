@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "โปสเตอร์สวัสดิการแรงงาน",
+    "type": "pdf",
+    "url": "/assets/labor-poster.pdf",
+    "source": "Csite"
+  },
+  {
+    "id": 2,
+    "title": "คลิปสัมภาษณ์แรงงานข้ามชาติ",
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=example",
+    "source": "WeBelong"
+  },
+  {
+    "id": 3,
+    "title": "คู่มือสิทธิแรงงาน (ภาษาเมียนมา)",
+    "type": "pdf",
+    "url": "/assets/labor-rights-mm.pdf",
+    "source": "Migrant Network"
+  },
+  {
+    "id": 4,
+    "title": "โปสเตอร์ป้องกันการค้ามนุษย์",
+    "type": "image",
+    "url": "/assets/anti-trafficking-poster.jpg",
+    "source": "ILO"
+  }
+]

@@ -1,0 +1,248 @@
+[
+  {
+    "province": "Chachoengsao",
+    "province_th": "ฉะเชิงเทรา",
+    "min_daily_wage": 400
+  },
+  { "province": "Chonburi", "province_th": "ชลบุรี", "min_daily_wage": 400 },
+  { "province": "Phuket", "province_th": "ภูเก็ต", "min_daily_wage": 400 },
+  { "province": "Rayong", "province_th": "ระยอง", "min_daily_wage": 400 },
+  {
+    "province": "Surat Thani",
+    "province_th": "สุราษฎร์ธานี",
+    "min_daily_wage": 400,
+    "note": "Koh Samui District only"
+  },
+  {
+    "province": "Chiang Mai",
+    "province_th": "เชียงใหม่",
+    "min_daily_wage": 380,
+    "note": "Mueang Chiang Mai District only"
+  },
+  {
+    "province": "Songkhla",
+    "province_th": "สงขลา",
+    "min_daily_wage": 380,
+    "note": "Hat Yai District only"
+  },
+  {
+    "province": "Bangkok",
+    "province_th": "กรุงเทพมหานคร",
+    "min_daily_wage": 372
+  },
+  {
+    "province": "Nakhon Pathom",
+    "province_th": "นครปฐม",
+    "min_daily_wage": 372
+  },
+  { "province": "Nonthaburi", "province_th": "นนทบุรี", "min_daily_wage": 372 },
+  {
+    "province": "Pathum Thani",
+    "province_th": "ปทุมธานี",
+    "min_daily_wage": 372
+  },
+  {
+    "province": "Samut Prakan",
+    "province_th": "สมุทรปราการ",
+    "min_daily_wage": 372
+  },
+  {
+    "province": "Samut Sakhon",
+    "province_th": "สมุทรสาคร",
+    "min_daily_wage": 372
+  },
+  {
+    "province": "Nakhon Ratchasima",
+    "province_th": "นครราชสีมา",
+    "min_daily_wage": 359
+  },
+  {
+    "province": "Samut Songkhram",
+    "province_th": "สมุทรสงคราม",
+    "min_daily_wage": 358
+  },
+  {
+    "province": "Khon Kaen",
+    "province_th": "ขอนแก่น",
+    "min_daily_wage": 357,
+    "note": "Except Mueang Chiang Mai District"
+  },
+  {
+    "province": "Chiang Mai",
+    "province_th": "เชียงใหม่",
+    "min_daily_wage": 357,
+    "note": "All areas except Mueang District"
+  },
+  {
+    "province": "Prachinburi",
+    "province_th": "ปราจีนบุรี",
+    "min_daily_wage": 357
+  },
+  {
+    "province": "Phra Nakhon Si Ayutthaya",
+    "province_th": "พระนครศรีอยุธยา",
+    "min_daily_wage": 357
+  },
+  { "province": "Saraburi", "province_th": "สระบุรี", "min_daily_wage": 357 },
+  { "province": "Lopburi", "province_th": "ลพบุรี", "min_daily_wage": 356 },
+  {
+    "province": "Nakhon Nayok",
+    "province_th": "นครนายก",
+    "min_daily_wage": 355
+  },
+  {
+    "province": "Suphan Buri",
+    "province_th": "สุพรรณบุรี",
+    "min_daily_wage": 355
+  },
+  { "province": "Nong Khai", "province_th": "หนองคาย", "min_daily_wage": 355 },
+  { "province": "Krabi", "province_th": "กระบี่", "min_daily_wage": 354 },
+  { "province": "Trat", "province_th": "ตราด", "min_daily_wage": 354 },
+  {
+    "province": "Kanchanaburi",
+    "province_th": "กาญจนบุรี",
+    "min_daily_wage": 352
+  },
+  {
+    "province": "Chanthaburi",
+    "province_th": "จันทบุรี",
+    "min_daily_wage": 352
+  },
+  {
+    "province": "Chiang Rai",
+    "province_th": "เชียงราย",
+    "min_daily_wage": 352
+  },
+  { "province": "Tak", "province_th": "ตาก", "min_daily_wage": 352 },
+  {
+    "province": "Nakhon Phanom",
+    "province_th": "นครพนม",
+    "min_daily_wage": 352
+  },
+  { "province": "Buriram", "province_th": "บุรีรัมย์", "min_daily_wage": 352 },
+  {
+    "province": "Prachuap Khiri Khan",
+    "province_th": "ประจวบคีรีขันธ์",
+    "min_daily_wage": 352
+  },
+  { "province": "Phang Nga", "province_th": "พังงา", "min_daily_wage": 352 },
+  {
+    "province": "Phitsanulok",
+    "province_th": "พิษณุโลก",
+    "min_daily_wage": 352
+  },
+  { "province": "Mukdahan", "province_th": "มุกดาหาร", "min_daily_wage": 352 },
+  {
+    "province": "Sakon Nakhon",
+    "province_th": "สกลนคร",
+    "min_daily_wage": 352
+  },
+  {
+    "province": "Songkhla",
+    "province_th": "สงขลา",
+    "min_daily_wage": 352,
+    "note": "All areas except Hat Yai District"
+  },
+  { "province": "Sa Kaeo", "province_th": "สระแก้ว", "min_daily_wage": 352 },
+  {
+    "province": "Surat Thani",
+    "province_th": "สุราษฎร์ธานี",
+    "min_daily_wage": 352,
+    "note": "All areas except Koh Samui District"
+  },
+  {
+    "province": "Ubon Ratchathani",
+    "province_th": "อุบลราชธานี",
+    "min_daily_wage": 352
+  },
+  { "province": "Chumphon", "province_th": "ชุมพร", "min_daily_wage": 351 },
+  {
+    "province": "Phetchaburi",
+    "province_th": "เพชรบุรี",
+    "min_daily_wage": 351
+  },
+  { "province": "Surin", "province_th": "สุรินทร์", "min_daily_wage": 351 },
+  {
+    "province": "Nakhon Sawan",
+    "province_th": "นครสวรรค์",
+    "min_daily_wage": 350
+  },
+  { "province": "Yasothon", "province_th": "ยโสธร", "min_daily_wage": 350 },
+  { "province": "Lamphun", "province_th": "ลำพูน", "min_daily_wage": 350 },
+  { "province": "Kalasin", "province_th": "กาฬสินธุ์", "min_daily_wage": 349 },
+  {
+    "province": "Nakhon Si Thammarat",
+    "province_th": "นครศรีธรรมราช",
+    "min_daily_wage": 349
+  },
+  { "province": "Bueng Kan", "province_th": "บึงกาฬ", "min_daily_wage": 349 },
+  {
+    "province": "Phetchabun",
+    "province_th": "เพชรบูรณ์",
+    "min_daily_wage": 349
+  },
+  { "province": "Roi Et", "province_th": "ร้อยเอ็ด", "min_daily_wage": 349 },
+  { "province": "Chai Nat", "province_th": "ชัยนาท", "min_daily_wage": 348 },
+  { "province": "Chaiyaphum", "province_th": "ชัยภูมิ", "min_daily_wage": 348 },
+  { "province": "Phatthalung", "province_th": "พัทลุง", "min_daily_wage": 348 },
+  {
+    "province": "Sing Buri",
+    "province_th": "สิงห์บุรี",
+    "min_daily_wage": 348
+  },
+  { "province": "Ang Thong", "province_th": "อ่างทอง", "min_daily_wage": 348 },
+  {
+    "province": "Kamphaeng Phet",
+    "province_th": "กำแพงเพชร",
+    "min_daily_wage": 347
+  },
+  { "province": "Phichit", "province_th": "พิจิตร", "min_daily_wage": 347 },
+  {
+    "province": "Mae Hong Son",
+    "province_th": "แม่ฮ่องสอน",
+    "min_daily_wage": 347
+  },
+  { "province": "Ranong", "province_th": "ระนอง", "min_daily_wage": 347 },
+  { "province": "Ratchaburi", "province_th": "ราชบุรี", "min_daily_wage": 347 },
+  { "province": "Lampang", "province_th": "ลำปาง", "min_daily_wage": 347 },
+  { "province": "Loei", "province_th": "เลย", "min_daily_wage": 347 },
+  { "province": "Sisaket", "province_th": "ศรีสะเกษ", "min_daily_wage": 347 },
+  { "province": "Satun", "province_th": "สตูล", "min_daily_wage": 347 },
+  { "province": "Sukhothai", "province_th": "สุโขทัย", "min_daily_wage": 347 },
+  {
+    "province": "Nong Bua Lam Phu",
+    "province_th": "หนองบัวลำภู",
+    "min_daily_wage": 347
+  },
+  {
+    "province": "Amnat Charoen",
+    "province_th": "อำนาจเจริญ",
+    "min_daily_wage": 347
+  },
+  {
+    "province": "Udon Thani",
+    "province_th": "อุดรธานี",
+    "min_daily_wage": 347
+  },
+  {
+    "province": "Uttaradit",
+    "province_th": "อุตรดิตถ์",
+    "min_daily_wage": 347
+  },
+  {
+    "province": "Uthai Thani",
+    "province_th": "อุทัยธานี",
+    "min_daily_wage": 347
+  },
+  { "province": "Trang", "province_th": "ตรัง", "min_daily_wage": 345 },
+  { "province": "Nan", "province_th": "น่าน", "min_daily_wage": 345 },
+  { "province": "Phayao", "province_th": "พะเยา", "min_daily_wage": 345 },
+  { "province": "Phrae", "province_th": "แพร่", "min_daily_wage": 345 },
+  {
+    "province": "Narathiwat",
+    "province_th": "นราธิวาส",
+    "min_daily_wage": 337
+  },
+  { "province": "Pattani", "province_th": "ปัตตานี", "min_daily_wage": 337 },
+  { "province": "Yala", "province_th": "ยะลา", "min_daily_wage": 337 }
+]

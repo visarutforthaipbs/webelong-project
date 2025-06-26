@@ -1,0 +1,5 @@
+{
+  "overtime_weekday_multiplier": 1.5,
+  "holiday_work_multiplier": 2.0,
+  "holiday_overtime_multiplier": 3.0
+}

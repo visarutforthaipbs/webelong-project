@@ -1,0 +1,8 @@
+[
+  { "min_years": 0.33, "max_years": 1, "days_pay": 30 },
+  { "min_years": 1, "max_years": 3, "days_pay": 90 },
+  { "min_years": 3, "max_years": 6, "days_pay": 180 },
+  { "min_years": 6, "max_years": 10, "days_pay": 240 },
+  { "min_years": 10, "max_years": 20, "days_pay": 300 },
+  { "min_years": 20, "max_years": 99, "days_pay": 400 }
+]
