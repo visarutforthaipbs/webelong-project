@@ -1,0 +1,28 @@
+{
+  "name": "webelong-platform",
+  "version": "1.0.0",
+  "description": "WeBelong Thai migrant worker platform",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm install && node server.js",
+    "build": "cd backend && npm install",
+    "dev": "cd backend && npm run dev"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/visarutforthaipbs/webelong-project.git"
+  },
+  "keywords": [
+    "migrant-workers",
+    "thailand",
+    "platform",
+    "express",
+    "mongodb"
+  ],
+  "author": "Thai PBS",
+  "license": "MIT"
+}
