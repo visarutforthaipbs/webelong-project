@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "cd backend && node server.js"
+startCommand = "npm start"
 
 [variables]
 NODE_ENV = "production" 
