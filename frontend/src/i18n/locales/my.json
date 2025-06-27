@@ -113,5 +113,9 @@
     "noDataAvailable": "အချက်အလက်များ မရှိပါ",
     "total": "စုစုပေါင်း",
     "percentage": "ရာခိုင်နှုန်း"
+  },
+  "map": {
+    "nonThaiPercentage": "% နိုင်ငံရပ်ခြားလူမျိုး",
+    "thaiPercentage": "% ထိုင်းလူမျိုး"
   }
 }

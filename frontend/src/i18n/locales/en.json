@@ -113,5 +113,9 @@
     "noDataAvailable": "No data available",
     "total": "Total",
     "percentage": "Percentage"
+  },
+  "map": {
+    "nonThaiPercentage": "% Cross-Border Population",
+    "thaiPercentage": "% Thai Population"
   }
 }

@@ -113,5 +113,9 @@
     "noDataAvailable": "ไม่มีข้อมูล",
     "total": "รวม",
     "percentage": "เปอร์เซ็นต์"
+  },
+  "map": {
+    "nonThaiPercentage": "% ประชากรข้ามชาติ",
+    "thaiPercentage": "% คนไทย"
   }
 }

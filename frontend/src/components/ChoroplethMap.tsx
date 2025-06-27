@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Box, Button, Text, VStack, HStack } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 interface Province {
   type: string;
@@ -34,6 +35,7 @@ export default function ChoroplethMap({
   onProvinceClick,
   selectedProvince,
 }: ChoroplethMapProps) {
+  const { t } = useTranslation();
   const [provinces, setProvinces] = useState<Province[]>([]);
   const [populationData, setPopulationData] = useState<PopulationData>({});
   const [bounds, setBounds] = useState<{
@@ -294,14 +296,14 @@ export default function ChoroplethMap({
               colorScheme={viewMode === "nonThai" ? "red" : "gray"}
               onClick={() => setViewMode("nonThai")}
             >
-              % ประชากรข้ามชาติ
+              {t("map.nonThaiPercentage")}
             </Button>
             <Button
               size="sm"
               colorScheme={viewMode === "thai" ? "blue" : "gray"}
               onClick={() => setViewMode("thai")}
             >
-              % คนไทย
+              {t("map.thaiPercentage")}
             </Button>
           </HStack>
         </VStack>
@@ -321,7 +323,9 @@ export default function ChoroplethMap({
       >
         <VStack align="start" spacing={2}>
           <Text fontSize="md" fontWeight="bold">
-            {viewMode === "nonThai" ? "% ประชากรข้ามชาติ" : "% คนไทย"}
+            {viewMode === "nonThai"
+              ? t("map.nonThaiPercentage")
+              : t("map.thaiPercentage")}
           </Text>
 
           {viewMode === "nonThai" ? (

@@ -113,5 +113,9 @@
     "noDataAvailable": "Không có dữ liệu",
     "total": "Tổng",
     "percentage": "Phần trăm"
+  },
+  "map": {
+    "nonThaiPercentage": "% Dân cư xuyên biên giới",
+    "thaiPercentage": "% Dân cư Thái"
   }
 }
