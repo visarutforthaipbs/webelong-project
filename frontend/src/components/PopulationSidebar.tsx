@@ -1160,7 +1160,7 @@ export default function PopulationSidebar({
         px={{ base: 2, md: 3 }}
         py={{ base: 4, md: 6 }}
         bg="white"
-        height="100vh"
+        height="100%"
         borderRight={{ base: "none", lg: "1px" }}
         borderColor="gray.200"
         width="100%"
@@ -1176,7 +1176,7 @@ export default function PopulationSidebar({
         px={{ base: 2, md: 3 }}
         py={{ base: 4, md: 6 }}
         bg="white"
-        height="100vh"
+        height="100%"
         borderRight={{ base: "none", lg: "1px" }}
         borderColor="gray.200"
         width="100%"
@@ -1192,7 +1192,7 @@ export default function PopulationSidebar({
         px={{ base: 2, md: 3 }}
         py={{ base: 4, md: 6 }}
         bg="white"
-        height="100vh"
+        height="100%"
         borderRight={{ base: "none", lg: "1px" }}
         borderColor="gray.200"
         width="100%"
@@ -1207,7 +1207,7 @@ export default function PopulationSidebar({
       px={{ base: 2, md: 3 }}
       py={{ base: 4, md: 6 }}
       bg="white"
-      height="100vh"
+      height="100%"
       borderRight={{ base: "none", lg: "1px" }}
       borderColor="gray.200"
       overflowY="auto"

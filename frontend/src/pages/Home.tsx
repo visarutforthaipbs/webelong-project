@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Flex, Box, useBreakpointValue, VStack } from "@chakra-ui/react";
-import StaticProvinceMap from "../components/StaticProvinceMap";
+import ChoroplethMap from "../components/ChoroplethMap";
 import PopulationSidebar from "../components/PopulationSidebar";
 import NotionContentSidebar from "../components/NotionContentSidebar";
 
@@ -32,17 +32,17 @@ export default function Home() {
   if (isMobile) {
     // Mobile Layout: Stack vertically
     return (
-      <VStack height="100vh" spacing={0} overflow="hidden">
+      <VStack height="calc(100vh - 50px)" spacing={0} overflow="hidden">
         {/* Map Section - Top half on mobile */}
-        <Box height="50vh" width="100%" position="relative" overflow="hidden">
-          <StaticProvinceMap
+        <Box height="50%" width="100%" position="relative" overflow="hidden">
+          <ChoroplethMap
             onProvinceClick={handleProvinceClick}
             selectedProvince={selectedProvince || undefined}
           />
         </Box>
 
         {/* Sidebar Section - Bottom half on mobile */}
-        <Box height="50vh" width="100%" overflow="hidden">
+        <Box height="50%" width="100%" overflow="hidden">
           <PopulationSidebar selectedProvince={selectedProvince} />
         </Box>
 
@@ -57,7 +57,7 @@ export default function Home() {
 
   // Desktop & Tablet Layout: Side by side
   return (
-    <Flex height="100vh" overflow="hidden">
+    <Flex height="calc(100vh - 55px)" overflow="hidden">
       {/* Sidebar Section - Responsive width */}
       <Flex width={sidebarWidth} flexShrink={0}>
         <PopulationSidebar selectedProvince={selectedProvince} />
@@ -65,7 +65,7 @@ export default function Home() {
 
       {/* Map Section - Takes up remaining space */}
       <Flex flex="1" position="relative">
-        <StaticProvinceMap
+        <ChoroplethMap
           onProvinceClick={handleProvinceClick}
           selectedProvince={selectedProvince || undefined}
         />

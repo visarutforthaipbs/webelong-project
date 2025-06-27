@@ -50,7 +50,7 @@ export default function App() {
           py={{ base: 1, md: 1.5 }}
           align="center"
           boxShadow="sm"
-          minH={{ base: "50px", md: "55px" }}
+          minH={{ base: "50px", md: "50px" }}
         >
           <HStack spacing={{ base: 2, md: 4 }}>
             <Link as={RouterLink} to="/" display="flex" alignItems="center">
