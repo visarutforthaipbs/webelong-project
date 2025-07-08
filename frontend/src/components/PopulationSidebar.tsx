@@ -320,9 +320,9 @@ export default function PopulationSidebar({
               flexShrink={0}
             />
             <Text
-              fontSize="sm"
+              fontSize={{ base: "xs", md: "sm" }}
               color="deepNavy"
-              lineHeight="1.7"
+              lineHeight={{ base: "1.5", md: "1.7" }}
               fontWeight="medium"
             >
               {t("home.migrantStats")}{" "}
@@ -423,23 +423,23 @@ export default function PopulationSidebar({
         </Box>
 
         {/* Partner Logos */}
-        <Box mt={6} width="100%">
+        <Box mt={{ base: 4, md: 6 }} width="100%">
           <Text
-            fontSize="xs"
+            fontSize={{ base: "xs", md: "sm" }}
             color="gray.500"
-            mb={3}
+            mb={{ base: 2, md: 3 }}
             textAlign="center"
             fontWeight="medium"
           >
             {t("home.partners")}
           </Text>
-          <HStack spacing={4} justify="center" wrap="wrap">
+          <SimpleGrid columns={2} spacing={{ base: 2, md: 4 }} justifyItems="center">
             <Box>
               <img
                 src="/image/logo/1-partner-logo.svg"
                 alt="Partner 1"
                 style={{
-                  height: "40px",
+                  height: "35px",
                   objectFit: "contain",
                   filter: "opacity(0.9)",
                 }}
@@ -450,7 +450,7 @@ export default function PopulationSidebar({
                 src="/image/logo/2-blue-partner-logo.svg"
                 alt="Partner 2"
                 style={{
-                  height: "40px",
+                  height: "35px",
                   objectFit: "contain",
                   filter: "opacity(0.9)",
                 }}
@@ -461,7 +461,7 @@ export default function PopulationSidebar({
                 src="/image/logo/3-blue-partner-logo.svg"
                 alt="Partner 3"
                 style={{
-                  height: "40px",
+                  height: "35px",
                   objectFit: "contain",
                   filter: "opacity(0.9)",
                 }}
@@ -472,13 +472,13 @@ export default function PopulationSidebar({
                 src="/image/logo/4-partner-logo.svg"
                 alt="Partner 4"
                 style={{
-                  height: "40px",
+                  height: "35px",
                   objectFit: "contain",
                   filter: "opacity(0.9)",
                 }}
               />
             </Box>
-          </HStack>
+          </SimpleGrid>
         </Box>
       </VStack>
     </Box>
@@ -1204,7 +1204,7 @@ export default function PopulationSidebar({
 
   return (
     <Box
-      px={{ base: 2, md: 3 }}
+      px={{ base: 3, md: 4 }}
       py={{ base: 4, md: 6 }}
       bg="white"
       height="100%"
@@ -1212,11 +1212,23 @@ export default function PopulationSidebar({
       borderColor="gray.200"
       overflowY="auto"
       width="100%"
+      css={{
+        '&::-webkit-scrollbar': {
+          width: '4px',
+        },
+        '&::-webkit-scrollbar-track': {
+          background: '#f1f1f1',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: '#c1c1c1',
+          borderRadius: '2px',
+        },
+      }}
     >
       <VStack spacing={6} align="stretch" width="100%">
         {/* Province Header */}
-        <VStack spacing={2} align="center">
-          <Heading size="lg" color="deepNavy" textAlign="center">
+        <VStack spacing={{ base: 1, md: 2 }} align="center">
+          <Heading size={{ base: "md", md: "lg" }} color="deepNavy" textAlign="center" lineHeight="shorter">
             {selectedProvince}
           </Heading>
           {(populationData?.migrant?.ภูมิภาค || economicData?.ภูมิภาค) && (
@@ -1225,50 +1237,78 @@ export default function PopulationSidebar({
                 populationData?.migrant?.ภูมิภาค || economicData?.ภูมิภาค || ""
               )}
               variant="solid"
-              px={3}
+              px={{ base: 2, md: 3 }}
               py={1}
+              fontSize={{ base: "xs", md: "sm" }}
             >
               {populationData?.migrant?.ภูมิภาค || economicData?.ภูมิภาค}
             </Badge>
           )}
         </VStack>
 
-        <Divider />
+        <Divider display={{ base: "none", md: "block" }} />
 
         {/* Tabs */}
         <Tabs variant="soft-rounded" colorScheme="blue" width="100%">
           <TabList
-            mb={{ base: 2, md: 4 }}
+            mb={{ base: 3, md: 4 }}
             justifyContent="center"
             width="100%"
             flexWrap="wrap"
-            gap={{ base: 0.5, md: 1 }}
+            gap={{ base: 1, md: 1 }}
+            overflowX="auto"
+            css={{
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
+              '-ms-overflow-style': 'none',
+              'scrollbar-width': 'none',
+            }}
           >
             <Tab
-              fontSize={{ base: "2xs", md: "xs" }}
-              minW={{ base: "50px", md: "60px" }}
-              px={{ base: 1, md: 2 }}
+              fontSize={{ base: "xs", md: "sm" }}
+              minW={{ base: "70px", md: "80px" }}
+              px={{ base: 2, md: 3 }}
+              py={{ base: 2, md: 1 }}
+              _selected={{ 
+                bg: "blue.500", 
+                color: "white",
+                transform: "scale(1.02)"
+              }}
             >
               สังคม
             </Tab>
             <Tab
-              fontSize={{ base: "2xs", md: "xs" }}
-              minW={{ base: "50px", md: "60px" }}
-              px={{ base: 1, md: 2 }}
+              fontSize={{ base: "xs", md: "sm" }}
+              minW={{ base: "70px", md: "80px" }}
+              px={{ base: 2, md: 3 }}
+              py={{ base: 2, md: 1 }}
+              _selected={{ 
+                bg: "blue.500", 
+                color: "white",
+                transform: "scale(1.02)"
+              }}
             >
               เศรษฐกิจ
             </Tab>
             <Tab
-              fontSize={{ base: "2xs", md: "xs" }}
-              minW={{ base: "60px", md: "70px" }}
-              px={{ base: 1, md: 2 }}
+              fontSize={{ base: "xs", md: "sm" }}
+              minW={{ base: "70px", md: "90px" }}
+              px={{ base: 2, md: 3 }}
+              py={{ base: 2, md: 1 }}
+              _selected={{ 
+                bg: "blue.500", 
+                color: "white",
+                transform: "scale(1.02)"
+              }}
             >
               ความปลอดภัย
             </Tab>
             <Tab
-              fontSize={{ base: "2xs", md: "xs" }}
-              minW={{ base: "50px", md: "60px" }}
-              px={{ base: 1, md: 2 }}
+              fontSize={{ base: "xs", md: "sm" }}
+              minW={{ base: "70px", md: "80px" }}
+              px={{ base: 2, md: 3 }}
+              py={{ base: 2, md: 1 }}
               isDisabled={true}
               opacity={0.4}
               cursor="not-allowed"
@@ -1279,9 +1319,10 @@ export default function PopulationSidebar({
               วัฒนธรรม
             </Tab>
             <Tab
-              fontSize={{ base: "2xs", md: "xs" }}
-              minW={{ base: "60px", md: "80px" }}
-              px={{ base: 0.5, md: 1 }}
+              fontSize={{ base: "xs", md: "sm" }}
+              minW={{ base: "70px", md: "100px" }}
+              px={{ base: 1, md: 2 }}
+              py={{ base: 2, md: 1 }}
               isDisabled={true}
               opacity={0.4}
               cursor="not-allowed"

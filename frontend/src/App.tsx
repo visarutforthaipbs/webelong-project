@@ -46,11 +46,14 @@ export default function App() {
           as="nav"
           bg="belongingBlue"
           color="white"
-          px={{ base: 2, md: 4 }}
-          py={{ base: 1, md: 1.5 }}
+          px={{ base: 3, md: 4 }}
+          py={{ base: 2, md: 1.5 }}
           align="center"
           boxShadow="sm"
-          minH={{ base: "50px", md: "50px" }}
+          minH={{ base: "60px", md: "50px" }}
+          position="sticky"
+          top="0"
+          zIndex="sticky"
         >
           <HStack spacing={{ base: 2, md: 4 }}>
             <Link as={RouterLink} to="/" display="flex" alignItems="center">
@@ -60,8 +63,10 @@ export default function App() {
               as={RouterLink}
               to="/calculator"
               color="white"
-              fontSize={{ base: "sm", md: "md" }}
+              fontSize={{ base: "md", md: "md" }}
               fontWeight="medium"
+              _hover={{ color: "hopeGreen" }}
+              transition="color 0.2s"
             >
               {t("nav.calculator")}
             </Link>
@@ -69,8 +74,10 @@ export default function App() {
               as={RouterLink}
               to="/report"
               color="white"
-              fontSize={{ base: "sm", md: "md" }}
+              fontSize={{ base: "md", md: "md" }}
               fontWeight="medium"
+              _hover={{ color: "hopeGreen" }}
+              transition="color 0.2s"
             >
               {t("nav.report")}
             </Link>
@@ -90,11 +97,11 @@ export default function App() {
               fontWeight="bold"
               fontSize={{ base: "xs", md: "sm" }}
               borderRadius="full"
-              px={{ base: 3, md: 4 }}
+              px={{ base: 2, md: 4 }}
               py={{ base: 1, md: 1.5 }}
               shadow="md"
               size={{ base: "sm", md: "md" }}
-              display={{ base: "none", md: "flex" }}
+              minW={{ base: "auto", md: "auto" }}
             >
               {t("nav.joinProject")}
             </Button>
@@ -108,12 +115,13 @@ export default function App() {
                 _active={{ bg: "hopeGreen", filter: "brightness(0.9)" }}
                 _focus={{ boxShadow: "0 0 0 2px #50E3C2" }}
                 fontWeight="bold"
-                fontSize={{ base: "sm", md: "md" }}
+                fontSize={{ base: "md", md: "md" }}
                 borderRadius="full"
                 px={{ base: 3, md: 4 }}
-                py={{ base: 1, md: 1.5 }}
+                py={{ base: 2, md: 1.5 }}
                 shadow="md"
-                size={{ base: "sm", md: "md" }}
+                size={{ base: "md", md: "md" }}
+                minW={{ base: "120px", md: "auto" }}
                 onClick={() => console.log("Language menu button clicked")}
               >
                 {LANGUAGES.find((l) => l.code === i18n.language)?.label ||
@@ -162,13 +170,13 @@ export default function App() {
             </Menu>
           </HStack>
         </Flex>
-        <Box as="main">
+        <Box as="main" bg="gray.50" minH="calc(100vh - 60px)">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
               path="/calculator"
               element={
-                <Box pt={4} px={2}>
+                <Box pt={{ base: 6, md: 4 }} px={{ base: 4, md: 2 }} pb={6}>
                   <Calculator />
                 </Box>
               }
@@ -176,7 +184,7 @@ export default function App() {
             <Route
               path="/report"
               element={
-                <Box pt={4} px={2}>
+                <Box pt={{ base: 6, md: 4 }} px={{ base: 4, md: 2 }} pb={6}>
                   <Report />
                 </Box>
               }

@@ -88,34 +88,46 @@ export default function Report() {
 
   return (
     <Box
-      bg="#F5E3C3"
-      p={{ base: 4, md: 6 }}
-      borderRadius="md"
-      boxShadow="md"
-      maxW={{ base: "95%", md: "lg" }}
+      bg="white"
+      p={{ base: 5, md: 8 }}
+      borderRadius="xl"
+      boxShadow="lg"
+      maxW={{ base: "100%", md: "lg" }}
       mx="auto"
-      mt={{ base: 4, md: 10 }}
+      mt={{ base: 0, md: 6 }}
+      border="1px solid"
+      borderColor="gray.200"
     >
-      <VStack as="form" onSubmit={handleSubmit} spacing={0} align="stretch">
+      <VStack as="form" onSubmit={handleSubmit} spacing={{ base: 5, md: 6 }} align="stretch">
         <Heading
-          size={{ base: "sm", md: "md" }}
-          mb={{ base: 4, md: 6 }}
+          size={{ base: "lg", md: "xl" }}
           textAlign="center"
+          color="belongingBlue"
+          fontWeight="bold"
         >
           {t("report.title")}
         </Heading>
-        <FormControl isRequired mb={4}>
-          <FormLabel>{t("report.industry")}</FormLabel>
+        <FormControl isRequired>
+          <FormLabel fontSize={{ base: "md", md: "lg" }} fontWeight="semibold" color="deepNavy">
+            {t("report.industry")}
+          </FormLabel>
           <Input
             name="industry"
             value={form.industry}
             onChange={handleChange}
             placeholder={t("report.industryPlaceholder")}
             bg="white"
+            size="lg"
+            borderRadius="lg"
+            border="2px solid"
+            borderColor="gray.200"
+            _hover={{ borderColor: "belongingBlue" }}
+            _focus={{ borderColor: "belongingBlue", boxShadow: "0 0 0 1px #4A90E2" }}
             _placeholder={{
               color: "gray.500",
-              fontSize: "sm",
+              fontSize: { base: "md", md: "sm" },
             }}
+            py={{ base: 6, md: 4 }}
           />
           <FormHelperText fontSize="sm" color="gray.600">
             {t("report.industryHelper")}
@@ -165,19 +177,28 @@ export default function Report() {
             </FormHelperText>
           </FormControl>
         )}
-        <FormControl isRequired mb={4}>
-          <FormLabel>{t("report.reportText")}</FormLabel>
+        <FormControl isRequired>
+          <FormLabel fontSize={{ base: "md", md: "lg" }} fontWeight="semibold" color="deepNavy">
+            {t("report.reportText")}
+          </FormLabel>
           <Textarea
             name="reportText"
             value={form.reportText}
             onChange={handleChange}
             placeholder={t("report.reportPlaceholder")}
             bg="white"
+            size="lg"
+            borderRadius="lg"
+            border="2px solid"
+            borderColor="gray.200"
+            _hover={{ borderColor: "belongingBlue" }}
+            _focus={{ borderColor: "belongingBlue", boxShadow: "0 0 0 1px #4A90E2" }}
             _placeholder={{
               color: "gray.500",
-              fontSize: "sm",
+              fontSize: { base: "md", md: "sm" },
             }}
-            minHeight="100px"
+            minHeight={{ base: "120px", md: "100px" }}
+            resize="vertical"
           />
         </FormControl>
         <FormControl mb={4}>
@@ -196,11 +217,19 @@ export default function Report() {
         </FormControl>
         <Button
           type="submit"
-          colorScheme="blue"
+          bg="belongingBlue"
+          color="white"
+          _hover={{ bg: "blue.600", transform: "translateY(-1px)" }}
+          _active={{ transform: "translateY(0px)" }}
           isLoading={submitting}
           w="full"
-          fontSize="lg"
-          mb={2}
+          size="lg"
+          fontSize={{ base: "lg", md: "xl" }}
+          fontWeight="bold"
+          borderRadius="lg"
+          py={{ base: 6, md: 6 }}
+          boxShadow="md"
+          transition="all 0.2s"
         >
           {t("report.submit")}
         </Button>

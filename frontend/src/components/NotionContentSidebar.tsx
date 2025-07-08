@@ -73,7 +73,6 @@ const NotionContentSidebar: React.FC<NotionContentSidebarProps> = ({
   const {
     isOpen,
     onOpen,
-    onClose: collapseClose,
   } = useDisclosure({ defaultIsOpen: true });
 
   const fetchNotionContent = async (provinceName: string) => {
@@ -153,43 +152,46 @@ const NotionContentSidebar: React.FC<NotionContentSidebarProps> = ({
     <Box
       position="fixed"
       right={0}
-      top={0}
+      top={{ base: 0, md: 0 }}
       h="100vh"
-      w={isOpen ? { base: "100vw", md: "400px", lg: "450px" } : "0px"}
+      w={isOpen ? { base: "100vw", md: "380px", lg: "420px" } : "0px"}
       bg="white"
       borderLeft={{ base: "none", md: "1px solid" }}
       borderColor="gray.200"
-      boxShadow="xl"
-      zIndex={1000}
+      boxShadow={{ base: "none", md: "xl" }}
+      zIndex={1100}
       transition="width 0.3s ease"
       overflow="hidden"
     >
       <Box h="full" overflow="hidden">
         {/* Header */}
-        <Box p={4} borderBottom="1px solid" borderColor="gray.200" bg="gray.50">
+        <Box 
+          p={{ base: 3, md: 4 }} 
+          borderBottom="1px solid" 
+          borderColor="gray.200" 
+          bg="gray.50"
+          position="sticky"
+          top={0}
+          zIndex={1}
+        >
           <HStack justify="space-between" align="center">
-            <VStack align="start" spacing={1}>
-              <Heading size="md" color="gray.700">
+            <VStack align="start" spacing={1} flex={1}>
+              <Heading size={{ base: "sm", md: "md" }} color="gray.700" noOfLines={1}>
                 เนื้อหาจาก {selectedProvince}
               </Heading>
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500">
                 โดย Locals Thai PBS
               </Text>
             </VStack>
-            <HStack>
-              <IconButton
-                aria-label="Toggle sidebar"
-                icon={<ChevronLeftIcon />}
-                size="sm"
-                variant="ghost"
-                onClick={isOpen ? collapseClose : onOpen}
-              />
+            <HStack spacing={1}>
+              {/* Only show close button on mobile for simplicity */}
               <IconButton
                 aria-label="Close sidebar"
                 icon={<ChevronLeftIcon />}
-                size="sm"
+                size={{ base: "md", md: "sm" }}
                 variant="ghost"
                 onClick={onClose}
+                _hover={{ bg: "gray.200" }}
               />
             </HStack>
           </HStack>
@@ -197,35 +199,40 @@ const NotionContentSidebar: React.FC<NotionContentSidebarProps> = ({
 
         {/* Content */}
         <Collapse in={isOpen} animateOpacity>
-          <Box h="calc(100vh - 80px)" overflowY="auto" p={4}>
+          <Box 
+            h={{ base: "calc(100vh - 85px)", md: "calc(100vh - 80px)" }} 
+            overflowY="auto" 
+            p={{ base: 3, md: 4 }}
+            pb={{ base: 6, md: 4 }}
+          >
             {loading && (
               <VStack spacing={4} py={8}>
                 <Spinner size="lg" color="blue.500" />
-                <Text color="gray.500">กำลังโหลดเนื้อหา...</Text>
+                <Text color="gray.500" fontSize={{ base: "sm", md: "md" }}>กำลังโหลดเนื้อหา...</Text>
               </VStack>
             )}
 
             {error && (
-              <Alert status="error" borderRadius="md">
+              <Alert status="error" borderRadius="md" mb={4}>
                 <AlertIcon />
-                <Text fontSize="sm">{error}</Text>
+                <Text fontSize={{ base: "xs", md: "sm" }}>{error}</Text>
               </Alert>
             )}
 
             {content.length === 0 && !loading && !error && (
-              <Alert status="info" borderRadius="md">
+              <Alert status="info" borderRadius="md" mb={4}>
                 <AlertIcon />
-                <Text fontSize="sm">
+                <Text fontSize={{ base: "xs", md: "sm" }}>
                   ไม่พบเนื้อหาสำหรับจังหวัด {selectedProvince}
                 </Text>
               </Alert>
             )}
 
-            <VStack spacing={4} align="stretch">
+            <VStack spacing={{ base: 3, md: 4 }} align="stretch">
               {content.map((page) => (
-                <Card key={page.id} size="sm" variant="outline">
-                  <CardBody>
-                    <VStack align="start" spacing={3}>
+                <Card key={page.id} size="sm" variant="outline" _hover={{ shadow: "md" }}>
+                  <CardBody p={{ base: 3, md: 4 }}>
+                    <VStack align="start" spacing={{ base: 2, md: 3 }}>
                       {/* Title */}
                       <Text
                         fontWeight="bold"

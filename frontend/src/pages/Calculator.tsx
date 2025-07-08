@@ -64,32 +64,43 @@ export default function Calculator() {
 
   return (
     <Box
-      bg="#F5E3C3"
-      p={{ base: 4, md: 6 }}
-      borderRadius="md"
-      boxShadow="md"
-      maxW={{ base: "95%", md: "lg" }}
+      bg="white"
+      p={{ base: 5, md: 8 }}
+      borderRadius="xl"
+      boxShadow="lg"
+      maxW={{ base: "100%", md: "lg" }}
       mx="auto"
-      mt={{ base: 4, md: 10 }}
+      mt={{ base: 0, md: 6 }}
+      border="1px solid"
+      borderColor="gray.200"
     >
-      <VStack as="form" onSubmit={handleSubmit} spacing={0} align="stretch">
+      <VStack as="form" onSubmit={handleSubmit} spacing={{ base: 5, md: 6 }} align="stretch">
         <Heading
-          size={{ base: "sm", md: "md" }}
-          mb={{ base: 4, md: 6 }}
+          size={{ base: "lg", md: "xl" }}
           textAlign="center"
+          color="belongingBlue"
+          fontWeight="bold"
         >
           {t("calculator.title")}
         </Heading>
         {loading ? (
-          <Spinner />
+          <Spinner size="lg" color="belongingBlue" />
         ) : (
-          <FormControl isRequired mb={4}>
-            <FormLabel>{t("calculator.province")}</FormLabel>
+          <FormControl isRequired>
+            <FormLabel fontSize={{ base: "md", md: "lg" }} fontWeight="semibold" color="deepNavy">
+              {t("calculator.province")}
+            </FormLabel>
             <Select
               name="provinceCode"
               value={form.provinceCode}
               onChange={(e) => handleChange("provinceCode", e.target.value)}
               bg="white"
+              size="lg"
+              borderRadius="lg"
+              border="2px solid"
+              borderColor="gray.200"
+              _hover={{ borderColor: "belongingBlue" }}
+              _focus={{ borderColor: "belongingBlue", boxShadow: "0 0 0 1px #4A90E2" }}
               _placeholder={{
                 color: "gray.500",
               }}
@@ -112,21 +123,30 @@ export default function Calculator() {
             </Select>
           </FormControl>
         )}
-        <FormControl isRequired mb={4}>
-          <FormLabel>{t("calculator.dailyWage")}</FormLabel>
+        <FormControl isRequired>
+          <FormLabel fontSize={{ base: "md", md: "lg" }} fontWeight="semibold" color="deepNavy">
+            {t("calculator.dailyWage")}
+          </FormLabel>
           <NumberInput
             name="userDailyWage"
             min={0}
             value={form.userDailyWage}
             onChange={(_, value) => handleChange("userDailyWage", value)}
+            size="lg"
           >
             <NumberInputField
               bg="white"
+              borderRadius="lg"
+              border="2px solid"
+              borderColor="gray.200"
+              _hover={{ borderColor: "belongingBlue" }}
+              _focus={{ borderColor: "belongingBlue", boxShadow: "0 0 0 1px #4A90E2" }}
               _placeholder={{
                 color: "gray.500",
-                fontSize: "sm",
+                fontSize: { base: "md", md: "sm" },
               }}
               placeholder="ใส่ค่าแรงต่อวันเป็นบาท"
+              py={{ base: 6, md: 4 }}
             />
             <NumberInputStepper>
               <NumberIncrementStepper />
@@ -211,11 +231,19 @@ export default function Calculator() {
         </FormControl>
         <Button
           type="submit"
-          colorScheme="blue"
+          bg="belongingBlue"
+          color="white"
+          _hover={{ bg: "blue.600", transform: "translateY(-1px)" }}
+          _active={{ transform: "translateY(0px)" }}
           isLoading={submitting}
           w="full"
-          fontSize="lg"
-          mb={2}
+          size="lg"
+          fontSize={{ base: "lg", md: "xl" }}
+          fontWeight="bold"
+          borderRadius="lg"
+          py={{ base: 6, md: 6 }}
+          boxShadow="md"
+          transition="all 0.2s"
         >
           {t("calculator.calculate")}
         </Button>

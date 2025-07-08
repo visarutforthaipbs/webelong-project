@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Button, Text, VStack, HStack } from "@chakra-ui/react";
+import { Box, Button, Text, VStack, HStack, SimpleGrid } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 interface Province {
@@ -275,33 +275,43 @@ export default function ChoroplethMap({
       flexDirection="column"
       overflow="hidden"
     >
-      {/* Controls */}
+      {/* Controls - Mobile: Top center, Desktop: Top left */}
       <Box
         position="absolute"
-        top={4}
-        left={4}
+        top={{ base: 2, md: 4 }}
+        left={{ base: "50%", md: 4 }}
+        transform={{ base: "translateX(-50%)", md: "none" }}
         zIndex={10}
         bg="white"
-        p={4}
-        borderRadius="md"
+        p={{ base: 2, md: 4 }}
+        borderRadius={{ base: "lg", md: "md" }}
         boxShadow="md"
+        minW={{ base: "200px", md: "auto" }}
+        border="1px solid"
+        borderColor="gray.200"
       >
-        <VStack align="start" spacing={3}>
-          <Text fontSize="lg" fontWeight="bold">
+        <VStack align="center" spacing={{ base: 2, md: 3 }}>
+          <Text fontSize={{ base: "sm", md: "lg" }} fontWeight="bold" textAlign="center">
             สัดส่วนประชากร
           </Text>
-          <HStack spacing={2}>
+          <HStack spacing={{ base: 1, md: 2 }} width="100%" justify="center">
             <Button
-              size="sm"
+              size={{ base: "xs", md: "sm" }}
               colorScheme={viewMode === "nonThai" ? "red" : "gray"}
               onClick={() => setViewMode("nonThai")}
+              fontSize={{ base: "2xs", md: "sm" }}
+              px={{ base: 2, md: 3 }}
+              flex={{ base: 1, md: "none" }}
             >
               {t("map.nonThaiPercentage")}
             </Button>
             <Button
-              size="sm"
+              size={{ base: "xs", md: "sm" }}
               colorScheme={viewMode === "thai" ? "blue" : "gray"}
               onClick={() => setViewMode("thai")}
+              fontSize={{ base: "2xs", md: "sm" }}
+              px={{ base: 2, md: 3 }}
+              flex={{ base: 1, md: "none" }}
             >
               {t("map.thaiPercentage")}
             </Button>
@@ -309,87 +319,91 @@ export default function ChoroplethMap({
         </VStack>
       </Box>
 
-      {/* Legend */}
+      {/* Legend - Mobile: Bottom center, Desktop: Bottom left */}
       <Box
         position="absolute"
-        bottom={4}
-        left={4}
+        bottom={{ base: 2, md: 4 }}
+        left={{ base: "50%", md: 4 }}
+        transform={{ base: "translateX(-50%)", md: "none" }}
         zIndex={10}
         bg="white"
-        p={4}
-        borderRadius="md"
+        p={{ base: 3, md: 4 }}
+        borderRadius={{ base: "lg", md: "md" }}
         boxShadow="md"
-        minW="200px"
+        minW={{ base: "280px", md: "200px" }}
+        maxW={{ base: "320px", md: "auto" }}
+        border="1px solid"
+        borderColor="gray.200"
       >
-        <VStack align="start" spacing={2}>
-          <Text fontSize="md" fontWeight="bold">
+        <VStack align="start" spacing={{ base: 2, md: 2 }}>
+          <Text fontSize={{ base: "sm", md: "md" }} fontWeight="bold" textAlign="center" width="100%">
             {viewMode === "nonThai"
               ? t("map.nonThaiPercentage")
               : t("map.thaiPercentage")}
           </Text>
 
           {viewMode === "nonThai" ? (
-            <VStack align="start" spacing={1}>
-              <HStack>
-                <Box w={4} h={4} bg="#991B1B" borderRadius="sm" />
-                <Text fontSize="sm">≥ 50%</Text>
+            <SimpleGrid columns={{ base: 2, md: 1 }} spacing={{ base: 1, md: 1 }} width="100%">
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#991B1B" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">≥ 50%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#DC2626" borderRadius="sm" />
-                <Text fontSize="sm">30-49%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#DC2626" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">30-49%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#EF4444" borderRadius="sm" />
-                <Text fontSize="sm">20-29%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#EF4444" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">20-29%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#F87171" borderRadius="sm" />
-                <Text fontSize="sm">10-19%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#F87171" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">10-19%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#FCA5A5" borderRadius="sm" />
-                <Text fontSize="sm">5-9%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#FCA5A5" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">5-9%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#FED7D7" borderRadius="sm" />
-                <Text fontSize="sm">1-4%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#FED7D7" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">1-4%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#FEF2F2" borderRadius="sm" />
-                <Text fontSize="sm">{"< 1%"}</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#FEF2F2" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">{"< 1%"}</Text>
               </HStack>
-            </VStack>
+            </SimpleGrid>
           ) : (
-            <VStack align="start" spacing={1}>
-              <HStack>
-                <Box w={4} h={4} bg="#1E3A8A" borderRadius="sm" />
-                <Text fontSize="sm">≥ 95%</Text>
+            <SimpleGrid columns={{ base: 2, md: 1 }} spacing={{ base: 1, md: 1 }} width="100%">
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#1E3A8A" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">≥ 95%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#1D4ED8" borderRadius="sm" />
-                <Text fontSize="sm">90-94%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#1D4ED8" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">90-94%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#3B82F6" borderRadius="sm" />
-                <Text fontSize="sm">80-89%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#3B82F6" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">80-89%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#60A5FA" borderRadius="sm" />
-                <Text fontSize="sm">70-79%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#60A5FA" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">70-79%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#93C5FD" borderRadius="sm" />
-                <Text fontSize="sm">60-69%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#93C5FD" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">60-69%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#BFDBFE" borderRadius="sm" />
-                <Text fontSize="sm">50-59%</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#BFDBFE" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">50-59%</Text>
               </HStack>
-              <HStack>
-                <Box w={4} h={4} bg="#DBEAFE" borderRadius="sm" />
-                <Text fontSize="sm">{"< 50%"}</Text>
+              <HStack justify="flex-start">
+                <Box w={{ base: 4, md: 4 }} h={{ base: 4, md: 4 }} bg="#DBEAFE" borderRadius="sm" />
+                <Text fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">{"< 50%"}</Text>
               </HStack>
-            </VStack>
+            </SimpleGrid>
           )}
         </VStack>
       </Box>
@@ -429,6 +443,7 @@ export default function ChoroplethMap({
             cursor: "pointer",
             position: "relative",
             zIndex: 2,
+            touchAction: "manipulation",
           }}
         >
           {provinces.map((province, index) => (
@@ -449,6 +464,7 @@ export default function ChoroplethMap({
                   selectedProvince === province.properties.pro_th
                     ? "drop-shadow(0px 2px 4px rgba(0,0,0,0.1))"
                     : "none",
+                touchAction: "manipulation",
               }}
               onClick={() => onProvinceClick(province.properties.pro_th)}
             >

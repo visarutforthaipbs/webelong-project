@@ -71,7 +71,7 @@ export default function PopulationPieChart({
     return num.toLocaleString("th-TH");
   };
 
-  const renderCustomTooltip = (props: any) => {
+  const renderCustomTooltip = (props: { active?: boolean; payload?: Array<{ payload: { name: string; value: number; percentage: string } }> }) => {
     if (props.active && props.payload && props.payload.length) {
       const data = props.payload[0].payload;
       return (
