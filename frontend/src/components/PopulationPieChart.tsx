@@ -150,7 +150,7 @@ export default function PopulationPieChart({
               if (entry.name === "แรงงานข้ามชาติ") color = COLORS.migrant;
               if (entry.name === "คนไร้รัฐไร้สัญชาติ") color = COLORS.stateless;
               if (entry.name === "ผู้ลี้ภัย") color = COLORS.refugee;
-              if (entry.name === "จำนวนผู้เรียนที่ไม่มีหลักฐานทางทะเบียนราษฎร")
+              if (entry.name === "ผู้เรียนที่ไม่มีหลักฐานทางทะเบียนราษฎร")
                 color = COLORS.student;
               return <Cell key={`cell-${index}`} fill={color} />;
             })}
@@ -168,27 +168,6 @@ export default function PopulationPieChart({
         </PieChart>
       </ResponsiveContainer>
 
-      {/* Summary Stats */}
-      <Box mt={4} p={3} bg="gray.50" borderRadius="md">
-        <Text fontSize="sm" color="gray.700" textAlign="center" mb={2}>
-          <strong>ประชากรรวม:</strong> {formatNumber(total)} คน
-        </Text>
-        <Box display="flex" flexDirection="column" gap={1} fontSize="xs">
-          {data.map((item) => {
-            let color = "belongingBlue";
-            if (item.name === "แรงงานข้ามชาติ") color = "hopeGreen";
-            if (item.name === "คนไร้รัฐไร้สัญชาติ") color = "#FF7F7F";
-            if (item.name === "ผู้ลี้ภัย") color = "#9B59B6";
-            if (item.name === "จำนวนผู้เรียนที่ไม่มีหลักฐานทางทะเบียนราษฎร")
-              color = "#E67E22";
-            return (
-              <Text key={item.name} color={color} textAlign="center">
-                {item.name}: {formatNumber(item.value)} ({item.percentage}%)
-              </Text>
-            );
-          })}
-        </Box>
-      </Box>
     </Box>
   );
 }

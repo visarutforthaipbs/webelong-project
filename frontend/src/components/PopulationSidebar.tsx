@@ -766,6 +766,41 @@ export default function PopulationSidebar({
               </VStack>
             </Box>
           )}
+
+        {/* Student Population Card */}
+        {(() => {
+          const provinceInfo = provincesData.find(p => p.pro_th === selectedProvince);
+          const provinceCode = provinceInfo ? parseInt(provinceInfo.pro_code) : 0;
+          const studentPopulation = calculateStudentPopulation(studentData, provinceCode);
+          
+          return studentPopulation > 0 ? (
+            <Box
+              p={4}
+              bg="orange.50"
+              borderRadius="lg"
+              borderLeft="4px"
+              borderColor="#E67E22"
+              width="100%"
+            >
+              <VStack spacing={3} align="start" width="100%">
+                <Text fontWeight="bold" color="#E67E22" fontSize="sm">
+                  ผู้เรียนที่ไม่มีหลักฐานทางทะเบียนราษฎร
+                </Text>
+                <HStack justify="space-between" width="100%">
+                  <Text fontSize="2xl" fontWeight="bold" color="deepNavy">
+                    {formatNumber(studentPopulation)}
+                  </Text>
+                  <Text fontSize="sm" color="gray.600">
+                    คน
+                  </Text>
+                </HStack>
+                <Text fontSize="sm" color="gray.600">
+                  ข้อมูลจากสำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน
+                </Text>
+              </VStack>
+            </Box>
+          ) : null;
+        })()}
       </SimpleGrid>
     </VStack>
   );
