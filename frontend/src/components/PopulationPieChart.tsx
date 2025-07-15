@@ -13,6 +13,7 @@ interface PopulationPieChartProps {
   migrantPopulation: number;
   statelessPopulation: number;
   refugeePopulation: number;
+  studentPopulation: number;
   provinceName: string;
 }
 
@@ -21,6 +22,7 @@ const COLORS = {
   migrant: "#50E3C2", // hopeGreen
   stateless: "#FF7F7F", // Light red for stateless
   refugee: "#9B59B6", // Purple for refugees
+  student: "#E67E22", // Dark orange for students
 };
 
 export default function PopulationPieChart({
@@ -28,13 +30,15 @@ export default function PopulationPieChart({
   migrantPopulation,
   statelessPopulation,
   refugeePopulation,
+  studentPopulation,
   provinceName,
 }: PopulationPieChartProps) {
   const total =
     thaiPopulation +
     migrantPopulation +
     statelessPopulation +
-    refugeePopulation;
+    refugeePopulation +
+    studentPopulation;
 
   if (total === 0) {
     return (
@@ -44,26 +48,39 @@ export default function PopulationPieChart({
     );
   }
 
+  const calculatePercentage = (value: number, total: number): string => {
+    if (total === 0 || !isFinite(value) || !isFinite(total)) {
+      return "0.0";
+    }
+    const percentage = (value / total) * 100;
+    return isFinite(percentage) ? percentage.toFixed(1) : "0.0";
+  };
+
   const data = [
     {
       name: "ประชากรไทย",
       value: thaiPopulation,
-      percentage: ((thaiPopulation / total) * 100).toFixed(1),
+      percentage: calculatePercentage(thaiPopulation, total),
     },
     {
       name: "แรงงานข้ามชาติ",
       value: migrantPopulation,
-      percentage: ((migrantPopulation / total) * 100).toFixed(1),
+      percentage: calculatePercentage(migrantPopulation, total),
     },
     {
       name: "คนไร้รัฐไร้สัญชาติ",
       value: statelessPopulation,
-      percentage: ((statelessPopulation / total) * 100).toFixed(1),
+      percentage: calculatePercentage(statelessPopulation, total),
     },
     {
       name: "ผู้ลี้ภัย",
       value: refugeePopulation,
-      percentage: ((refugeePopulation / total) * 100).toFixed(1),
+      percentage: calculatePercentage(refugeePopulation, total),
+    },
+    {
+      name: "ผู้เรียนที่ไม่มีหลักฐานทางทะเบียนราษฎร",
+      value: studentPopulation,
+      percentage: calculatePercentage(studentPopulation, total),
     },
   ].filter((item) => item.value > 0);
 
@@ -71,7 +88,12 @@ export default function PopulationPieChart({
     return num.toLocaleString("th-TH");
   };
 
-  const renderCustomTooltip = (props: { active?: boolean; payload?: Array<{ payload: { name: string; value: number; percentage: string } }> }) => {
+  const renderCustomTooltip = (props: {
+    active?: boolean;
+    payload?: Array<{
+      payload: { name: string; value: number; percentage: string };
+    }>;
+  }) => {
     if (props.active && props.payload && props.payload.length) {
       const data = props.payload[0].payload;
       return (
@@ -128,6 +150,8 @@ export default function PopulationPieChart({
               if (entry.name === "แรงงานข้ามชาติ") color = COLORS.migrant;
               if (entry.name === "คนไร้รัฐไร้สัญชาติ") color = COLORS.stateless;
               if (entry.name === "ผู้ลี้ภัย") color = COLORS.refugee;
+              if (entry.name === "จำนวนผู้เรียนที่ไม่มีหลักฐานทางทะเบียนราษฎร")
+                color = COLORS.student;
               return <Cell key={`cell-${index}`} fill={color} />;
             })}
           </Pie>
@@ -155,6 +179,8 @@ export default function PopulationPieChart({
             if (item.name === "แรงงานข้ามชาติ") color = "hopeGreen";
             if (item.name === "คนไร้รัฐไร้สัญชาติ") color = "#FF7F7F";
             if (item.name === "ผู้ลี้ภัย") color = "#9B59B6";
+            if (item.name === "จำนวนผู้เรียนที่ไม่มีหลักฐานทางทะเบียนราษฎร")
+              color = "#E67E22";
             return (
               <Text key={item.name} color={color} textAlign="center">
                 {item.name}: {formatNumber(item.value)} ({item.percentage}%)

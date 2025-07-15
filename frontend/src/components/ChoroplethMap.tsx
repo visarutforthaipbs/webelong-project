@@ -20,10 +20,19 @@ interface PopulationData {
     migrant: number;
     stateless: number;
     refugee: number;
+    student: number;
     total: number;
     nonThaiPercentage: number;
     thaiPercentage: number;
   };
+}
+
+interface StudentData {
+  "รหัสจังหวัด": number;
+  "จังหวัด": string;
+  "จำนวน (ชาย)": string;
+  "จำนวน (หญิง)": string;
+  "ยอดรวม": string;
 }
 
 interface ChoroplethMapProps {
@@ -51,7 +60,7 @@ export default function ChoroplethMap({
     const loadData = async () => {
       try {
         // Load all data files
-        const [geoData, thaiData, migrantData, statelessData, refugeeData] =
+        const [geoData, thaiData, migrantData, statelessData, refugeeData, studentData] =
           await Promise.all([
             fetch("/data/provinces.geojson").then((res) => res.json()),
             fetch("/data/thai_pop_province.json").then((res) => res.json()),
@@ -60,6 +69,7 @@ export default function ChoroplethMap({
               res.json()
             ),
             fetch("/data/refugee_pop_province.json").then((res) => res.json()),
+            fetch("/data/student-pop-67.json").then((res) => res.json()),
           ]);
 
         setProvinces(geoData.features);
@@ -92,6 +102,13 @@ export default function ChoroplethMap({
           }
         );
 
+        // Create student lookup map
+        const studentMap = new Map();
+        studentData.forEach((item: StudentData) => {
+          const total = parseInt(item.ยอดรวม.replace(/,/g, "")) || 0;
+          studentMap.set(item.จังหวัด, total);
+        });
+
         // Process each province
         Object.keys(thaiData).forEach((provinceName) => {
           const thai =
@@ -103,15 +120,17 @@ export default function ChoroplethMap({
             : 0;
           const stateless = statelessMap.get(provinceName) || 0;
           const refugee = refugeeMap.get(provinceName) || 0;
+          const student = studentMap.get(provinceName) || 0;
 
-          const total = thai + migrant + stateless + refugee;
-          const nonThaiTotal = migrant + stateless + refugee;
+          const total = thai + migrant + stateless + refugee + student;
+          const nonThaiTotal = migrant + stateless + refugee + student;
 
           processedData[provinceName] = {
             thai,
             migrant,
             stateless,
             refugee,
+            student,
             total,
             nonThaiPercentage: total > 0 ? (nonThaiTotal / total) * 100 : 0,
             thaiPercentage: total > 0 ? (thai / total) * 100 : 0,

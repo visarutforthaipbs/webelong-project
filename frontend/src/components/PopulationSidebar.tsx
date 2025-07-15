@@ -21,6 +21,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PopulationPieChart from "./PopulationPieChart";
+import { calculateStudentPopulation } from "../utils/studentPopulation";
 
 interface StatelessData {
   จังหวัด: string;
@@ -105,6 +106,24 @@ interface PopulationSidebarProps {
   selectedProvince: string | null;
 }
 
+interface StudentData {
+  "รหัสจังหวัด": number;
+  "จังหวัด": string;
+  "จำนวน (ชาย)": string;
+  "จำนวน (หญิง)": string;
+  "ยอดรวม": string;
+}
+
+interface ProvinceData {
+  pro_code: string;
+  pro_th: string;
+  pro_en: string;
+  reg_nesdb: string;
+  reg_royin: string;
+  perimeter: number;
+  area_sqkm: number;
+}
+
 export default function PopulationSidebar({
   selectedProvince,
 }: PopulationSidebarProps) {
@@ -118,6 +137,8 @@ export default function PopulationSidebar({
   const [safetyData, setSafetyData] = useState<OccupationalDiseaseData | null>(
     null
   );
+  const [studentData, setStudentData] = useState<StudentData[]>([]);
+  const [provincesData, setProvincesData] = useState<ProvinceData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -145,6 +166,8 @@ export default function PopulationSidebar({
       ),
       fetch("/data/stateless_pop_province.json").then((r) => r.json()),
       fetch("/data/refugee_pop_province.json").then((r) => r.json()),
+      fetch("/data/student-pop-67.json").then((r) => r.json()),
+      fetch("/data/provinces.geojson").then((r) => r.json()),
     ])
       .then(
         ([
@@ -155,7 +178,11 @@ export default function PopulationSidebar({
           safetyData,
           statelessData,
           refugeeData,
+          studentData,
+          provincesGeoJson,
         ]) => {
+          setStudentData(studentData);
+          setProvincesData(provincesGeoJson.features.map((f: any) => f.properties));
           const migrant = migrantData[selectedProvince];
           const thai = thaiData[selectedProvince];
           const economic = economicData[selectedProvince];
@@ -182,6 +209,8 @@ export default function PopulationSidebar({
             setEconomicData(null);
             setMinimumWageData(null);
             setSafetyData(null);
+            setStudentData([]);
+            setProvincesData([]);
           } else {
             setPopulationData({ migrant, thai, stateless, refugee });
             setEconomicData(economic);
@@ -197,6 +226,8 @@ export default function PopulationSidebar({
         setEconomicData(null);
         setMinimumWageData(null);
         setSafetyData(null);
+        setStudentData([]);
+        setProvincesData([]);
       })
       .finally(() => {
         setLoading(false);
@@ -507,23 +538,31 @@ export default function PopulationSidebar({
   const PopulationTab = () => (
     <VStack spacing={6} align="stretch" width="100%">
       {/* Population Pie Chart */}
-      {populationData?.thai && populationData?.migrant && selectedProvince && (
-        <PopulationPieChart
-          thaiPopulation={parseInt(
-            populationData.thai.ประชากรรวม?.replace(/,/g, "") || "0"
-          )}
-          migrantPopulation={parseInt(
-            populationData.migrant["รวมทั้งสิ้น (คน)"]?.replace(/,/g, "") || "0"
-          )}
-          statelessPopulation={
-            populationData.stateless?.ผลรวมประชากรที่มิใช่สัญชาติไทย || 0
-          }
-          refugeePopulation={parseInt(
-            populationData.refugee?.ยอดรวม?.replace(/,/g, "") || "0"
-          )}
-          provinceName={selectedProvince}
-        />
-      )}
+      {populationData?.thai && populationData?.migrant && selectedProvince && (() => {
+        // Get province code for student data lookup
+        const provinceInfo = provincesData.find(p => p.pro_th === selectedProvince);
+        const provinceCode = provinceInfo ? parseInt(provinceInfo.pro_code) : 0;
+        const studentPopulation = calculateStudentPopulation(studentData, provinceCode);
+        
+        return (
+          <PopulationPieChart
+            thaiPopulation={parseInt(
+              populationData.thai.ประชากรรวม?.replace(/,/g, "") || "0"
+            )}
+            migrantPopulation={parseInt(
+              populationData.migrant["รวมทั้งสิ้น (คน)"]?.replace(/,/g, "") || "0"
+            )}
+            statelessPopulation={
+              populationData.stateless?.ผลรวมประชากรที่มิใช่สัญชาติไทย || 0
+            }
+            refugeePopulation={parseInt(
+              populationData.refugee?.ยอดรวม?.replace(/,/g, "") || "0"
+            )}
+            studentPopulation={studentPopulation}
+            provinceName={selectedProvince}
+          />
+        );
+      })()}
 
       {/* Quick Stats Cards */}
       <SimpleGrid columns={1} spacing={4} width="100%">
@@ -1261,8 +1300,8 @@ export default function PopulationSidebar({
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
-              '-ms-overflow-style': 'none',
-              'scrollbar-width': 'none',
+              msOverflowStyle: 'none',
+              scrollbarWidth: 'none',
             }}
           >
             <Tab
