@@ -104,7 +104,7 @@ const NotionContentSidebar: React.FC<NotionContentSidebarProps> = ({
   };
 
   useEffect(() => {
-    if (selectedProvince) {
+    if (selectedProvince && selectedProvince.trim() !== "") {
       fetchNotionContent(selectedProvince);
       onOpen();
     }

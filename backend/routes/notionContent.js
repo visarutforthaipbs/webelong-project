@@ -10,9 +10,13 @@ const NOTION_VERSION = "2022-06-28";
 router.post("/notion-content", async (req, res) => {
   try {
     const { province } = req.body;
+    console.log("Received request for province:", province);
 
-    if (!province) {
-      return res.status(400).json({ error: "Province is required" });
+    if (!province || typeof province !== 'string' || province.trim() === '') {
+      return res.status(400).json({ 
+        error: "Province is required", 
+        message: "Please provide a valid province name in the request body" 
+      });
     }
 
     // Build the query filter for Notion API
