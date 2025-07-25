@@ -76,22 +76,27 @@ const NotionContentSidebar: React.FC<NotionContentSidebarProps> = ({
   } = useDisclosure({ defaultIsOpen: true });
 
   const fetchNotionContent = async (provinceName: string) => {
+    console.log("Fetching Notion content for province:", provinceName);
     setLoading(true);
     setError(null);
 
     try {
+      const requestBody = { province: provinceName };
+      console.log("Request body:", JSON.stringify(requestBody));
+      console.log("API URL:", apiUrl("/api/notion-content"));
+      
       const response = await fetch(apiUrl("/api/notion-content"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          province: provinceName,
-        }),
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch content");
+        const errorText = await response.text();
+        console.error("API Error:", response.status, errorText);
+        throw new Error(`Failed to fetch content: ${response.status} - ${errorText}`);
       }
 
       const data: NotionResponse = await response.json();
