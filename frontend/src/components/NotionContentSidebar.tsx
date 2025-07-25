@@ -35,7 +35,7 @@ interface NotionPage {
       rich_text: Array<{ plain_text: string }>;
     };
     Province: {
-      select: { name: string; color: string } | null;
+      multi_select: Array<{ name: string; color: string }>;
     };
     Tags: {
       multi_select: Array<{ name: string; color: string }>;

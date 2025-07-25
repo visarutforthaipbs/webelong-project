@@ -35,8 +35,8 @@ router.post("/notion-content", async (req, res) => {
         },
         {
           property: "Province",
-          select: {
-            equals: province,
+          multi_select: {
+            contains: province,
           },
         },
       ],
@@ -148,11 +148,13 @@ router.get("/notion-provinces", async (req, res) => {
 
     const data = await response.json();
 
-    // Extract unique provinces
+    // Extract unique provinces (handling multi_select)
     const provinces = new Set();
     data.results.forEach((page) => {
-      if (page.properties.Province?.select?.name) {
-        provinces.add(page.properties.Province.select.name);
+      if (page.properties.Province?.multi_select) {
+        page.properties.Province.multi_select.forEach((option) => {
+          provinces.add(option.name);
+        });
       }
     });
 
