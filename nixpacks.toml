@@ -1,0 +1,8 @@
+[providers]
+node = "18"
+
+[variables]
+NODE_ENV = "production"
+
+[start]
+cmd = "npm start"

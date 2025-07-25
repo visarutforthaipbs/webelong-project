@@ -28,6 +28,14 @@ WeBelong is a Thai migrant worker platform with separate frontend and backend ap
   - `/api/feedback` - User feedback system
   - `/api/info` - Information endpoints
   - `/api/notion-content` - Notion CMS integration
+- **Frontend Pages**:
+  - `/` - Homepage with interactive map
+  - `/calculator` - Wage calculation tool
+  - `/feedback` - Feedback submission
+  - `/rights-info` - Rights information
+  - `/resources/communication-map` - Communication mapping
+  - `/resources/communicator-guide` - Communicator guide
+  - `/resources/media-library` - Media resource library
 
 ## Development Commands
 
@@ -73,8 +81,21 @@ npm run dev         # Start backend with nodemon
 ### Data Management
 
 - Backend uses MongoDB with Mongoose ODM
-- Static data files in `backend/data/` (JSON format)
-- Frontend public data in `frontend/public/data/` (GeoJSON, province data)
+- **Backend Data Files** (`backend/data/`):
+  - `centers.json` - Service center information
+  - `feedback.json` - User feedback storage
+  - `leave_entitlements.json` - Leave calculation data
+  - `media_library.json` - Media resources metadata
+  - `minimum_wages.json` - Wage calculation base data
+  - `reports.json` - Report submissions storage
+  - `severance_pay.json` - Severance calculation data
+  - `wage_multipliers.json` - Overtime/holiday multipliers
+- **Frontend Data Files** (`frontend/public/data/`):
+  - `student-pop-67.json` - Student population data by province
+  - `occupational_disease_by_province.json` - Health statistics
+  - `minimum_wage_by_province.json` - Provincial wage data
+  - `nonthai_registration_by_province.json` - Registration statistics
+  - Multiple population datasets by category and year
 
 ### Internationalization
 
@@ -85,9 +106,16 @@ npm run dev         # Start backend with nodemon
 ### Key Components
 
 - `ChoroplethMap.tsx` - Interactive province-level data visualization
-- `PopulationSidebar.tsx` - Data display sidebar
+- `PopulationSidebar.tsx` - Data display sidebar with tabbed interface
+- `PopulationPieChart.tsx` - Multi-category population visualization (Thai/Migrant/Stateless/Refugee/Student)
 - `Calculator.tsx` - Wage calculation interface
 - `NotionContentSidebar.tsx` - CMS content integration
+
+### Utilities and Services
+
+- `frontend/src/utils/studentPopulation.ts` - Student data processing utilities
+- `backend/services/dataLoader.js` - JSON data loading service
+- `frontend/src/hooks/useFetch.ts` - Custom API fetch hook
 
 ## Deployment
 
@@ -100,6 +128,12 @@ npm run dev         # Start backend with nodemon
 ## Database Connection
 
 MongoDB connection string is configured via environment variable `MONGODB_URI` with fallback to hardcoded connection string in `backend/server.js:8-9`.
+
+### Database Schemas
+
+- **CalculatorInput**: Wage calculation storage with timestamps
+- **Report**: Report submissions with validation
+- **Feedback**: User feedback collection with automatic timestamps
 
 ## Mobile & Tablet Optimizations
 
@@ -135,3 +169,15 @@ The application has been optimized for mobile and tablet devices with the follow
 ## Testing
 
 Currently no test framework is configured. Tests show "Error: no test specified" in all package.json files.
+
+## Code Quality
+
+- **Frontend**: ESLint with React hooks and TypeScript rules
+- **TypeScript**: Project references structure (app/node split)
+- **Build**: Vite configuration with API proxy (`/api` → `http://localhost:4000`)
+
+## External Integrations
+
+- **Notion CMS**: Content management integration
+- **Legacy System**: Links to `https://legacy.csitereport.com/migrant`
+- **Font Assets**: Custom DB Helvethaica X font files (regular, bold, medium variants)

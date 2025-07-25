@@ -167,7 +167,6 @@ export default function PopulationPieChart({
           />
         </PieChart>
       </ResponsiveContainer>
-
     </Box>
   );
 }

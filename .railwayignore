@@ -1,0 +1,8 @@
+frontend/
+*.md
+.git/
+.gitignore
+*.log
+*.env.local
+*.env.development
+node_modules/frontend/
