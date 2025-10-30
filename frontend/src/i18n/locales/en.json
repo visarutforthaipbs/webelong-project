@@ -6,6 +6,7 @@
     "calculator": "Wage Calculator",
     "rights": "Labor Rights Info",
     "report": "Report Issues",
+    "survey": "MFI Survey",
     "feedback": "Feedback",
     "joinProject": "Join Cross-Border Population Stories"
   },
@@ -117,5 +118,97 @@
   "map": {
     "nonThaiPercentage": "% Cross-Border Population",
     "thaiPercentage": "% Thai Population"
+  },
+  "survey": {
+    "title": "MFI Index Survey",
+    "description": "9 surveys for collecting Migrant Fusion Index (MFI) data",
+    "submit": "Submit",
+    "tabs": {
+      "wage": "1. Wage",
+      "clinic": "2. Clinic",
+      "barrier": "3. Barrier",
+      "incident": "4. Incident",
+      "ngo": "5. NGO",
+      "audit": "6. Signs",
+      "media": "7. Media",
+      "event": "8. Event",
+      "group": "9. Community"
+    },
+    "wage": {
+      "title": "Migrant Worker Wage Record",
+      "description": "Data collection tool for actual migrant worker wages (for median calculation)",
+      "province": "Province",
+      "dailyWage": "Actual daily wage received (baht/day)",
+      "wageHelper": "Excluding overtime (OT)",
+      "jobType": "Job type"
+    },
+    "clinic": {
+      "title": "Migrant-Friendly Clinic Verification",
+      "description": "Record clinics with multilingual services for migrant workers",
+      "clinicId": "Clinic/Hospital ID",
+      "clinicName": "Clinic/Hospital name",
+      "gps": "GPS coordinates",
+      "gpsHelper": "Used for mapping",
+      "multilingualService": "Has multilingual service for migrant workers?"
+    },
+    "barrier": {
+      "title": "Service Access Barrier Survey",
+      "description": "Assess ease of accessing government services",
+      "province": "Province",
+      "score": "Ease score",
+      "scoreHelper": "1 = Very easy, 5 = Very difficult"
+    },
+    "incident": {
+      "title": "Incident Report",
+      "description": "Record labor rights violations such as passport seizure",
+      "province": "Province",
+      "date": "Incident date",
+      "type": "Incident type",
+      "verified": "Verification status",
+      "details": "Incident details"
+    },
+    "ngo": {
+      "title": "NGO Registration",
+      "description": "Record organizations providing legal assistance to migrant workers",
+      "name": "Organization name",
+      "province": "Province location",
+      "serviceType": "Main service type",
+      "contact": "Contact information"
+    },
+    "audit": {
+      "title": "Multilingual Signs Audit",
+      "description": "Record government offices with multilingual signs",
+      "province": "Province",
+      "officeType": "Office type",
+      "multilingualSigns": "Has multilingual signs?",
+      "signsHelper": "e.g. Burmese, Khmer, Lao",
+      "notes": "Notes"
+    },
+    "media": {
+      "title": "Media Registration",
+      "description": "Record media using migrant worker languages",
+      "name": "Media/Channel name",
+      "province": "Main operation province",
+      "type": "Media type",
+      "url": "Website/URL"
+    },
+    "event": {
+      "title": "Cultural Event Log",
+      "description": "Record cultural events for migrant workers",
+      "province": "Province",
+      "type": "Event type",
+      "status": "Event status",
+      "date": "Event date",
+      "details": "Event details"
+    },
+    "group": {
+      "title": "Civil Society Group Registration",
+      "description": "Record migrant worker community groups",
+      "name": "Group/Organization name",
+      "province": "Main activity province",
+      "activeStatus": "Activity status",
+      "contactPerson": "Contact person",
+      "contact": "Contact information"
+    }
   }
 }
