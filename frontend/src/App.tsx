@@ -4,41 +4,17 @@ import {
   Route,
   Link as RouterLink,
 } from "react-router-dom";
-import {
-  Box,
-  Flex,
-  Spacer,
-  Link,
-  HStack,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Button,
-} from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Box, Flex, Spacer, Link, HStack, Image } from "@chakra-ui/react";
 import Home from "./pages/Home";
+import LandingPage from "./pages/LandingPage";
 import Calculator from "./pages/Calculator";
 import Report from "./pages/Report";
-import { useTranslation } from "react-i18next";
+import Survey from "./pages/Survey";
+import Methodology from "./pages/Methodology";
 
 import Logo from "./components/Logo";
 
-const LANGUAGES = [
-  { code: "th", label: "ไทย" },
-  { code: "en", label: "English" },
-  { code: "my", label: "မြန်မာ" },
-  { code: "km", label: "ខ្មែរ" },
-  { code: "lo", label: "ລາວ" },
-  { code: "vi", label: "Tiếng Việt" },
-];
-
 export default function App() {
-  const { t, i18n } = useTranslation();
-
-  // Debug: Log current language
-  console.log("Current language:", i18n.language);
-
   return (
     <Router>
       <Box minH="100vh" bg="white">
@@ -46,24 +22,36 @@ export default function App() {
           as="nav"
           bg="belongingBlue"
           color="white"
-          px={{ base: 3, md: 4 }}
-          py={{ base: 2, md: 1.5 }}
+          px={{ base: 4, md: 6 }}
+          py={{ base: 3, md: 3 }}
           align="center"
-          boxShadow="sm"
-          minH={{ base: "60px", md: "50px" }}
+          boxShadow="md"
+          minH={{ base: "70px", md: "70px" }}
           position="sticky"
           top="0"
           zIndex="sticky"
         >
-          <HStack spacing={{ base: 2, md: 4 }}>
+          <HStack spacing={{ base: 3, md: 6 }}>
             <Link as={RouterLink} to="/" display="flex" alignItems="center">
               <Logo boxSize={{ base: 14, md: 16 }} />
+            </Link>
+            {/* Hidden navigation items */}
+            {/* <Link
+              as={RouterLink}
+              to="/map"
+              color="white"
+              fontSize={{ base: "md", md: "lg" }}
+              fontWeight="medium"
+              _hover={{ color: "hopeGreen" }}
+              transition="color 0.2s"
+            >
+              แผนที่
             </Link>
             <Link
               as={RouterLink}
               to="/calculator"
               color="white"
-              fontSize={{ base: "md", md: "md" }}
+              fontSize={{ base: "md", md: "lg" }}
               fontWeight="medium"
               _hover={{ color: "hopeGreen" }}
               transition="color 0.2s"
@@ -74,105 +62,38 @@ export default function App() {
               as={RouterLink}
               to="/report"
               color="white"
-              fontSize={{ base: "md", md: "md" }}
+              fontSize={{ base: "md", md: "lg" }}
               fontWeight="medium"
               _hover={{ color: "hopeGreen" }}
               transition="color 0.2s"
             >
               {t("nav.report")}
             </Link>
+            <Link
+              as={RouterLink}
+              to="/survey"
+              color="white"
+              fontSize={{ base: "md", md: "lg" }}
+              fontWeight="medium"
+              _hover={{ color: "hopeGreen" }}
+              transition="color 0.2s"
+            >
+              {t("nav.survey")}
+            </Link> */}
           </HStack>
           <Spacer />
-          <HStack spacing={{ base: 2, md: 4 }}>
-            <Button
-              as="a"
-              href="https://legacy.csitereport.com/migrant"
-              target="_blank"
-              rel="noopener noreferrer"
-              bg="hopeGreen"
-              color="deepNavy"
-              _hover={{ bg: "hopeGreen", filter: "brightness(0.95)" }}
-              _active={{ bg: "hopeGreen", filter: "brightness(0.9)" }}
-              _focus={{ boxShadow: "0 0 0 2px #50E3C2" }}
-              fontWeight="bold"
-              fontSize={{ base: "xs", md: "sm" }}
-              borderRadius="full"
-              px={{ base: 2, md: 4 }}
-              py={{ base: 1, md: 1.5 }}
-              shadow="md"
-              size={{ base: "sm", md: "md" }}
-              minW={{ base: "auto", md: "auto" }}
-            >
-              {t("nav.joinProject")}
-            </Button>
-            <Menu closeOnSelect={true}>
-              <MenuButton
-                as={Button}
-                rightIcon={<ChevronDownIcon />}
-                bg="hopeGreen"
-                color="deepNavy"
-                _hover={{ bg: "hopeGreen", filter: "brightness(0.95)" }}
-                _active={{ bg: "hopeGreen", filter: "brightness(0.9)" }}
-                _focus={{ boxShadow: "0 0 0 2px #50E3C2" }}
-                fontWeight="bold"
-                fontSize={{ base: "md", md: "md" }}
-                borderRadius="full"
-                px={{ base: 3, md: 4 }}
-                py={{ base: 2, md: 1.5 }}
-                shadow="md"
-                size={{ base: "md", md: "md" }}
-                minW={{ base: "120px", md: "auto" }}
-                onClick={() => console.log("Language menu button clicked")}
-              >
-                {LANGUAGES.find((l) => l.code === i18n.language)?.label ||
-                  "ภาษา"}
-              </MenuButton>
-              <MenuList
-                bg="white"
-                color="deepNavy"
-                borderRadius="lg"
-                boxShadow="xl"
-                zIndex={9999}
-                border="1px solid"
-                borderColor="gray.200"
-                minW="150px"
-              >
-                {LANGUAGES.map((lang) => (
-                  <MenuItem
-                    key={lang.code}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      console.log(`MenuItem clicked: ${lang.code}`);
-                      console.log(`Switching to language: ${lang.code}`);
-                      i18n
-                        .changeLanguage(lang.code)
-                        .then(() => {
-                          console.log(
-                            `Language switched successfully to: ${lang.code}`
-                          );
-                        })
-                        .catch((error) => {
-                          console.error("Error switching language:", error);
-                        });
-                    }}
-                    _hover={{ bg: "gray.100" }}
-                    _focus={{ bg: "gray.100" }}
-                    fontWeight={i18n.language === lang.code ? "bold" : "normal"}
-                    cursor="pointer"
-                    fontSize="md"
-                    py={2}
-                  >
-                    {lang.label}
-                  </MenuItem>
-                ))}
-              </MenuList>
-            </Menu>
-          </HStack>
+          <Image
+            src="/image/logo/pi-logos.png"
+            alt="Partner Logo"
+            h={{ base: "35px", md: "45px" }}
+            objectFit="contain"
+          />
         </Flex>
-        <Box as="main" bg="gray.50" minH="calc(100vh - 60px)">
+        <Box as="main" bg="gray.50" minH="calc(100vh - 70px)">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/map" element={<Home />} />
+            <Route path="/methodology" element={<Methodology />} />
             <Route
               path="/calculator"
               element={
@@ -186,6 +107,14 @@ export default function App() {
               element={
                 <Box pt={{ base: 6, md: 4 }} px={{ base: 4, md: 2 }} pb={6}>
                   <Report />
+                </Box>
+              }
+            />
+            <Route
+              path="/survey"
+              element={
+                <Box pt={{ base: 6, md: 4 }} px={{ base: 4, md: 2 }} pb={6}>
+                  <Survey />
                 </Box>
               }
             />
